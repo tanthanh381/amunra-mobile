@@ -1,3 +1,60 @@
+const ADMIN_SESSION_KEY = "amunraAdminSession";
+const ADMIN_PIN_HASH = "240be518fabd2724c0c34d1256022ffc6756c09b3a7fa3f3630b180765ab06af";
+
+async function sha256(value) {
+  const bytes = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function injectAdminGate() {
+  if (sessionStorage.getItem(ADMIN_SESSION_KEY) === "ok") return;
+
+  document.documentElement.classList.add("admin-is-locked");
+  const gate = document.createElement("section");
+  gate.className = "admin-gate";
+  gate.setAttribute("role", "dialog");
+  gate.setAttribute("aria-modal", "true");
+  gate.setAttribute("aria-labelledby", "adminGateTitle");
+  gate.innerHTML = `
+    <form class="admin-gate__card" id="adminGateForm">
+      <span class="admin-gate__mark">A</span>
+      <h1 id="adminGateTitle">Xác thực Admin</h1>
+      <p>Trang quản trị chỉ dành cho người quản lý nội dung. Mã mặc định: <strong>2468</strong>. Hãy đổi cơ chế này khi chuyển sang backend thật.</p>
+      <label>
+        Mã truy cập
+        <input id="adminGatePin" type="password" inputmode="numeric" autocomplete="current-password" required />
+      </label>
+      <button type="submit">Vào trang quản trị</button>
+      <strong id="adminGateError" class="admin-gate__error" role="status" aria-live="polite"></strong>
+    </form>
+  `;
+
+  document.body.prepend(gate);
+  gate.querySelector("#adminGatePin").focus();
+  gate.querySelector("#adminGateForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const pin = gate.querySelector("#adminGatePin").value;
+    const error = gate.querySelector("#adminGateError");
+    const isValid = (await sha256(pin)) === ADMIN_PIN_HASH;
+
+    if (!isValid) {
+      error.textContent = "Mã truy cập không đúng.";
+      return;
+    }
+
+    sessionStorage.setItem(ADMIN_SESSION_KEY, "ok");
+    document.documentElement.classList.remove("admin-is-locked");
+    gate.remove();
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", injectAdminGate);
+} else {
+  injectAdminGate();
+}
+
 const storageKeys = window.AMUNRA_STORAGE || {
   products: "amunraProducts",
   slides: "amunraHeroSlides",
@@ -85,7 +142,24 @@ function listFromText(value) {
   return String(value || "")
     .split(",")
     .map((item) => item.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .slice(0, 8);
+}
+
+function safeText(value, maxLength = 180) {
+  return String(value || "").trim().slice(0, maxLength);
+}
+
+function safeImageUrl(value) {
+  const url = String(value || "").trim();
+  if (!url) return fallbackImage;
+  try {
+    const parsed = new URL(url, window.location.href);
+    if (!["https:", "http:"].includes(parsed.protocol)) return fallbackImage;
+    return parsed.href;
+  } catch (error) {
+    return fallbackImage;
+  }
 }
 
 function fillSiteForm() {
@@ -99,7 +173,7 @@ function collectSiteForm() {
   const formData = new FormData(siteForm);
   siteContent = { ...siteContent };
   formData.forEach((value, key) => {
-    siteContent[key] = String(value).trim();
+    siteContent[key] = safeText(value, key === "footerIntro" || key === "tradeDescription" ? 500 : 160);
   });
 }
 
@@ -119,23 +193,23 @@ function slideTemplate(slide, index) {
         <h3>Banner ${index + 1}</h3>
         <label>
           Nhãn nhỏ
-          <input name="eyebrow" type="text" value="${escapeAttribute(slide.eyebrow)}" />
+          <input name="eyebrow" type="text" maxlength="60" value="${escapeAttribute(slide.eyebrow)}" />
         </label>
         <label>
           Tiêu đề
-          <input name="title" type="text" value="${escapeAttribute(slide.title)}" />
+          <input name="title" type="text" maxlength="90" value="${escapeAttribute(slide.title)}" />
         </label>
         <label class="wide">
           Mô tả
-          <textarea name="description" rows="2">${escapeHtml(slide.description)}</textarea>
+          <textarea name="description" rows="2" maxlength="220">${escapeHtml(slide.description)}</textarea>
         </label>
         <label>
           Chữ trên nút
-          <input name="buttonText" type="text" value="${escapeAttribute(slide.buttonText)}" />
+          <input name="buttonText" type="text" maxlength="40" value="${escapeAttribute(slide.buttonText)}" />
         </label>
         <label>
           Link nút
-          <input name="buttonHref" type="text" value="${escapeAttribute(slide.buttonHref)}" />
+          <input name="buttonHref" type="text" maxlength="120" value="${escapeAttribute(slide.buttonHref)}" />
         </label>
         <label class="wide">
           Link ảnh banner
@@ -143,7 +217,7 @@ function slideTemplate(slide, index) {
         </label>
         <label class="wide">
           Mô tả ảnh
-          <input name="alt" type="text" value="${escapeAttribute(slide.alt)}" />
+          <input name="alt" type="text" maxlength="120" value="${escapeAttribute(slide.alt)}" />
         </label>
         <div class="form-actions wide">
           <button class="remove-slide" type="button" data-remove-slide="${index}">Xóa banner này</button>
@@ -162,15 +236,22 @@ function collectSlides() {
   heroSlides = [...document.querySelectorAll(".slide-editor")].map((editor) => {
     const getValue = (name) => editor.querySelector(`[name="${name}"]`).value.trim();
     return {
-      eyebrow: getValue("eyebrow"),
-      title: getValue("title"),
-      description: getValue("description"),
-      buttonText: getValue("buttonText"),
-      buttonHref: getValue("buttonHref") || "#deals",
-      image: getValue("image") || fallbackImage,
-      alt: getValue("alt"),
+      eyebrow: safeText(getValue("eyebrow"), 60),
+      title: safeText(getValue("title"), 90),
+      description: safeText(getValue("description"), 220),
+      buttonText: safeText(getValue("buttonText"), 40),
+      buttonHref: safeInternalHref(getValue("buttonHref")) || "#deals",
+      image: safeImageUrl(getValue("image")),
+      alt: safeText(getValue("alt"), 120),
     };
   });
+}
+
+function safeInternalHref(value) {
+  const href = String(value || "").trim();
+  if (href.startsWith("#")) return href.slice(0, 120);
+  if (href.startsWith("./") && !href.includes("..")) return href.slice(0, 120);
+  return "#deals";
 }
 
 function clearProductForm() {
@@ -200,13 +281,17 @@ function collectProductForm() {
   const price = parseMoney(productForm.elements.price.value);
   const oldPrice = Math.max(parseMoney(productForm.elements.oldPrice.value), price);
   return {
-    name: productForm.elements.name.value.trim(),
-    section: productForm.elements.section.value,
-    type: productForm.elements.type.value,
+    name: safeText(productForm.elements.name.value, 120),
+    section: ["flash", "phones", "computers", "accessories"].includes(productForm.elements.section.value)
+      ? productForm.elements.section.value
+      : "phones",
+    type: ["phone", "tablet", "accessory"].includes(productForm.elements.type.value)
+      ? productForm.elements.type.value
+      : "phone",
     price,
     oldPrice,
     stock: Math.min(100, Math.max(0, Number(productForm.elements.stock.value) || 0)),
-    image: productForm.elements.image.value.trim() || fallbackImage,
+    image: safeImageUrl(productForm.elements.image.value),
     specs: listFromText(productForm.elements.specs.value),
     badges: listFromText(productForm.elements.badges.value),
   };
@@ -314,13 +399,17 @@ function bindEvents() {
     const preview = editor?.querySelector(".slide-preview img");
     if (preview) {
       preview.dataset.fallbackApplied = "";
-      preview.src = event.target.value.trim() || fallbackImage;
+      preview.src = safeImageUrl(event.target.value);
     }
   });
 
   productForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const product = collectProductForm();
+    if (!product.name) {
+      showToast("Tên sản phẩm không được để trống");
+      return;
+    }
     const editIndex = productForm.elements.editIndex.value;
     if (editIndex === "") {
       products.push(product);
