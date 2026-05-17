@@ -4,8 +4,6 @@ window.AMUNRA_STORAGE = {
   site: "amunraSiteContent",
 };
 
-const tgddSearch = (keyword) => `https://www.thegioididong.com/tim-kiem?key=${encodeURIComponent(keyword)}`;
-
 const amunraProductImages = {
   iphone: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80",
   samsung: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80",
@@ -23,27 +21,27 @@ window.AMUNRA_DEFAULTS = {
   site: {
     brandName: "Amunra",
     brandSubtitle: "Mobile Store",
-    topMessage: "Tổng hợp sản phẩm công nghệ tham khảo từ Thế Giới Di Động",
+    topMessage: "Danh sách sản phẩm công nghệ nổi bật được hiển thị trực tiếp tại Amunra",
     hotline: "0967.29.29.29",
     hotlineTel: "0967292929",
     email: "hello@amunra.vn",
     address: "29 Đường Amunra, TP.HCM",
     footerIntro:
-      "Amunra là website giới thiệu và điều hướng sản phẩm công nghệ. Giá, khuyến mãi và tồn kho cần được kiểm tra lại tại Thế Giới Di Động trước khi mua.",
-    promoOneLabel: "Nguồn sản phẩm",
-    promoOneTitle: "Tham khảo từ thegioididong.com",
-    promoTwoLabel: "Lưu ý giá bán",
-    promoTwoTitle: "Giá hiển thị chỉ là tham khảo",
-    tradeEyebrow: "Amunra Affiliate",
-    tradeTitle: "Khám phá sản phẩm công nghệ từ Thế Giới Di Động",
+      "Amunra là website giới thiệu sản phẩm công nghệ theo dạng storefront nội bộ. Người dùng có thể xem sản phẩm, tìm kiếm, lọc danh mục và thêm vào giỏ hàng ngay trên website.",
+    promoOneLabel: "Sản phẩm nổi bật",
+    promoOneTitle: "Hiển thị trực tiếp trên Amunra",
+    promoTwoLabel: "Trải nghiệm mua sắm",
+    promoTwoTitle: "Không điều hướng sang website bên ngoài",
+    tradeEyebrow: "Amunra Storefront",
+    tradeTitle: "Khám phá sản phẩm công nghệ ngay trên Amunra",
     tradeDescription:
-      "Chọn sản phẩm bạn quan tâm, xem thông tin nổi bật và truy cập nguồn Thegioididong để kiểm tra giá, khuyến mãi, tồn kho mới nhất.",
+      "Danh sách sản phẩm được sao chép và quản lý như dữ liệu nội bộ của website, giúp người dùng xem thông tin và thao tác mua sắm mà không bị chuyển sang trang khác.",
   },
   heroSlides: [
     {
-      eyebrow: "Amunra x TGDD",
-      title: "Tổng hợp điện thoại nổi bật từ Thế Giới Di Động",
-      description: "Danh sách sản phẩm công nghệ được gom theo nhóm để người dùng dễ tìm, so sánh và đi tới trang nguồn.",
+      eyebrow: "Amunra Mobile",
+      title: "Tổng hợp điện thoại nổi bật ngay trên Amunra",
+      description: "Danh sách sản phẩm công nghệ được gom theo nhóm để người dùng dễ tìm kiếm, so sánh và thêm vào giỏ hàng.",
       buttonText: "Xem sản phẩm",
       buttonHref: "#phones",
       image: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1400&q=80",
@@ -61,7 +59,7 @@ window.AMUNRA_DEFAULTS = {
     {
       eyebrow: "Phụ kiện",
       title: "Tai nghe, đồng hồ, sạc nhanh và phụ kiện",
-      description: "Bổ sung phụ kiện phù hợp để tăng giá trị đơn hàng và tối ưu chuyển đổi affiliate.",
+      description: "Bổ sung phụ kiện phù hợp để tăng giá trị đơn hàng và hoàn thiện trải nghiệm mua sắm.",
       buttonText: "Xem phụ kiện",
       buttonHref: "#accessories",
       image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=80",
@@ -77,9 +75,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Apple A18 Pro", "Màn hình Super Retina XDR", "Camera Pro"],
       price: 30990000,
       oldPrice: 34990000,
-      badges: ["TGDD", "Apple", "Nổi bật"],
+      badges: ["Apple", "Nổi bật", "Flagship"],
       stock: 72,
-      sourceUrl: tgddSearch("iPhone 16 Pro Max"),
     },
     {
       name: "Samsung Galaxy S25 Ultra",
@@ -89,9 +86,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Galaxy AI", "Camera 200MP", "S Pen"],
       price: 28990000,
       oldPrice: 33990000,
-      badges: ["TGDD", "Samsung", "Flagship"],
+      badges: ["Samsung", "Flagship", "AI Phone"],
       stock: 65,
-      sourceUrl: tgddSearch("Samsung Galaxy S25 Ultra"),
     },
     {
       name: "Xiaomi Redmi Note 14 Pro 5G",
@@ -101,9 +97,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["5G", "AMOLED 120Hz", "Camera 200MP"],
       price: 8490000,
       oldPrice: 9990000,
-      badges: ["TGDD", "Xiaomi", "Tầm trung"],
+      badges: ["Xiaomi", "Tầm trung", "5G"],
       stock: 80,
-      sourceUrl: tgddSearch("Xiaomi Redmi Note 14 Pro 5G"),
     },
     {
       name: "OPPO Reno14",
@@ -113,9 +108,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Camera chân dung", "Sạc nhanh", "Thiết kế mỏng"],
       price: 12990000,
       oldPrice: 14990000,
-      badges: ["TGDD", "OPPO"],
+      badges: ["OPPO", "Camera", "Sạc nhanh"],
       stock: 58,
-      sourceUrl: tgddSearch("OPPO Reno14"),
     },
     {
       name: "iPhone 16",
@@ -125,9 +119,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Apple A18", "Camera Fusion", "iOS"],
       price: 20990000,
       oldPrice: 22990000,
-      badges: ["TGDD", "Apple"],
+      badges: ["Apple", "iOS"],
       stock: 75,
-      sourceUrl: tgddSearch("iPhone 16"),
     },
     {
       name: "Samsung Galaxy A56 5G",
@@ -137,9 +130,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["5G", "Super AMOLED", "Pin dùng cả ngày"],
       price: 9490000,
       oldPrice: 10990000,
-      badges: ["TGDD", "Samsung", "Bán chạy"],
+      badges: ["Samsung", "Bán chạy", "5G"],
       stock: 84,
-      sourceUrl: tgddSearch("Samsung Galaxy A56 5G"),
     },
     {
       name: "vivo V50",
@@ -149,9 +141,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Camera chân dung", "Màn hình AMOLED", "Sạc nhanh"],
       price: 11990000,
       oldPrice: 13990000,
-      badges: ["TGDD", "vivo"],
+      badges: ["vivo", "Camera"],
       stock: 54,
-      sourceUrl: tgddSearch("vivo V50"),
     },
     {
       name: "realme 14 Pro",
@@ -161,9 +152,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["AMOLED", "Pin lớn", "Hiệu năng tốt"],
       price: 8990000,
       oldPrice: 10490000,
-      badges: ["TGDD", "realme"],
+      badges: ["realme", "Pin lớn"],
       stock: 60,
-      sourceUrl: tgddSearch("realme 14 Pro"),
     },
     {
       name: "MacBook Air M4 13 inch",
@@ -173,9 +163,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Apple M4", "Mỏng nhẹ", "Pin lâu"],
       price: 26990000,
       oldPrice: 29990000,
-      badges: ["TGDD", "MacBook"],
+      badges: ["MacBook", "Laptop", "Mỏng nhẹ"],
       stock: 40,
-      sourceUrl: tgddSearch("MacBook Air M4 13 inch"),
     },
     {
       name: "iPad Air M3",
@@ -185,9 +174,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Chip M3", "Màn Liquid Retina", "Hỗ trợ Apple Pencil"],
       price: 16990000,
       oldPrice: 18990000,
-      badges: ["TGDD", "iPad"],
+      badges: ["iPad", "Tablet"],
       stock: 52,
-      sourceUrl: tgddSearch("iPad Air M3"),
     },
     {
       name: "Samsung Galaxy Tab S10 FE",
@@ -197,9 +185,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["S Pen", "Màn hình lớn", "Học tập làm việc"],
       price: 11990000,
       oldPrice: 13990000,
-      badges: ["TGDD", "Tablet"],
+      badges: ["Samsung", "Tablet", "S Pen"],
       stock: 45,
-      sourceUrl: tgddSearch("Samsung Galaxy Tab S10 FE"),
     },
     {
       name: "Laptop ASUS Vivobook",
@@ -209,9 +196,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Văn phòng", "Mỏng nhẹ", "SSD"],
       price: 13990000,
       oldPrice: 15990000,
-      badges: ["TGDD", "Laptop"],
+      badges: ["ASUS", "Laptop", "Văn phòng"],
       stock: 48,
-      sourceUrl: tgddSearch("Laptop ASUS Vivobook"),
     },
     {
       name: "Apple Watch Series 10",
@@ -221,9 +207,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Theo dõi sức khỏe", "Màn hình Always-On", "watchOS"],
       price: 9990000,
       oldPrice: 11990000,
-      badges: ["TGDD", "Apple Watch"],
+      badges: ["Apple Watch", "Sức khỏe"],
       stock: 70,
-      sourceUrl: tgddSearch("Apple Watch Series 10"),
     },
     {
       name: "AirPods Pro 2",
@@ -233,9 +218,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Chống ồn chủ động", "Spatial Audio", "USB-C"],
       price: 5490000,
       oldPrice: 6490000,
-      badges: ["TGDD", "Tai nghe"],
+      badges: ["Tai nghe", "ANC", "Apple"],
       stock: 74,
-      sourceUrl: tgddSearch("AirPods Pro 2"),
     },
     {
       name: "Sạc nhanh Anker 65W",
@@ -245,9 +229,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["GaN", "USB-C", "Sạc nhanh"],
       price: 790000,
       oldPrice: 990000,
-      badges: ["TGDD", "Phụ kiện"],
+      badges: ["Phụ kiện", "Sạc nhanh"],
       stock: 86,
-      sourceUrl: tgddSearch("Sạc nhanh Anker 65W"),
     },
     {
       name: "Pin sạc dự phòng 20.000mAh",
@@ -257,9 +240,8 @@ window.AMUNRA_DEFAULTS = {
       specs: ["Dung lượng lớn", "USB-C", "Du lịch"],
       price: 690000,
       oldPrice: 890000,
-      badges: ["TGDD", "Power bank"],
+      badges: ["Power bank", "Phụ kiện"],
       stock: 78,
-      sourceUrl: tgddSearch("Pin sạc dự phòng 20000mAh"),
     },
   ],
 };
