@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Amunra | Quản lý nội dung</title>
+    <link rel="stylesheet" href="./admin.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="./data.js" defer></script>
+    <script src="./admin.js" defer></script>
+  </head>
+  <body>
+    <header class="admin-header">
+      <div class="admin-header__brand">
+        <span>A</span>
+        <div>
+          <strong>Amunra Admin</strong>
+          <small>Quản lý nội dung website</small>
+        </div>
+      </div>
+      <nav>
+        <a href="./index.html" target="_blank" rel="noreferrer">
+          <i data-lucide="external-link"></i>
+          Xem website
+        </a>
+        <button type="button" id="resetData">
+          <i data-lucide="rotate-ccw"></i>
+          Khôi phục mẫu
+        </button>
+      </nav>
+    </header>
+
+    <main class="admin-layout">
+      <aside class="admin-sidebar">
+        <a href="#overview" class="is-active"><i data-lucide="layout-dashboard"></i> Tổng quan</a>
+        <a href="#siteContent"><i data-lucide="store"></i> Thông tin cửa hàng</a>
+        <a href="#heroContent"><i data-lucide="image"></i> Banner</a>
+        <a href="#productContent"><i data-lucide="package"></i> Sản phẩm</a>
+      </aside>
+
+      <section class="admin-main">
+        <section id="overview" class="panel">
+          <div class="panel-heading">
+            <div>
+              <span>Tổng quan</span>
+              <h1>Nội dung website Amunra</h1>
+            </div>
+            <div class="save-status" id="saveStatus">Sẵn sàng chỉnh sửa</div>
+          </div>
+          <div class="stats-grid">
+            <article>
+              <i data-lucide="package"></i>
+              <span>Sản phẩm</span>
+              <strong id="productCount">0</strong>
+            </article>
+            <article>
+              <i data-lucide="badge-percent"></i>
+              <span>Flash sale</span>
+              <strong id="flashCount">0</strong>
+            </article>
+            <article>
+              <i data-lucide="images"></i>
+              <span>Banner</span>
+              <strong id="slideCount">0</strong>
+            </article>
+          </div>
+          <p class="help-note">
+            Sau khi bấm lưu, mở hoặc tải lại file <strong>index.html</strong> để xem thay đổi trên
+            trang bán hàng.
+          </p>
+        </section>
+
+        <section id="siteContent" class="panel">
+          <div class="panel-heading">
+            <div>
+              <span>Thông tin chung</span>
+              <h2>Cửa hàng và khuyến mãi phụ</h2>
+            </div>
+          </div>
+          <form id="siteForm" class="form-grid">
+            <label>
+              Tên thương hiệu
+              <input name="brandName" type="text" />
+            </label>
+            <label>
+              Dòng phụ logo
+              <input name="brandSubtitle" type="text" />
+            </label>
+            <label class="wide">
+              Thông báo đầu trang
+              <input name="topMessage" type="text" />
+            </label>
+            <label>
+              Hotline hiển thị
+              <input name="hotline" type="text" />
+            </label>
+            <label>
+              Số gọi điện
+              <input name="hotlineTel" type="text" />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" />
+            </label>
+            <label>
+              Địa chỉ
+              <input name="address" type="text" />
+            </label>
+            <label>
+              Nhãn ưu đãi 1
+              <input name="promoOneLabel" type="text" />
+            </label>
+            <label>
+              Nội dung ưu đãi 1
+              <input name="promoOneTitle" type="text" />
+            </label>
+            <label>
+              Nhãn ưu đãi 2
+              <input name="promoTwoLabel" type="text" />
+            </label>
+            <label>
+              Nội dung ưu đãi 2
+              <input name="promoTwoTitle" type="text" />
+            </label>
+            <label>
+              Nhãn khối thu cũ
+              <input name="tradeEyebrow" type="text" />
+            </label>
+            <label>
+              Tiêu đề khối thu cũ
+              <input name="tradeTitle" type="text" />
+            </label>
+            <label class="wide">
+              Mô tả khối thu cũ
+              <textarea name="tradeDescription" rows="3"></textarea>
+            </label>
+            <label class="wide">
+              Giới thiệu ở footer
+              <textarea name="footerIntro" rows="3"></textarea>
+            </label>
+            <div class="form-actions wide">
+              <button class="primary-button" type="submit">
+                <i data-lucide="save"></i>
+                Lưu thông tin
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section id="heroContent" class="panel">
+          <div class="panel-heading">
+            <div>
+              <span>Banner trang chủ</span>
+              <h2>Quản lý slider khuyến mãi</h2>
+            </div>
+            <button class="ghost-button" id="addSlide" type="button">
+              <i data-lucide="plus"></i>
+              Thêm banner
+            </button>
+          </div>
+          <form id="slideForm">
+            <div id="slideList" class="slide-list"></div>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">
+                <i data-lucide="save"></i>
+                Lưu banner
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section id="productContent" class="panel">
+          <div class="panel-heading">
+            <div>
+              <span>Danh mục sản phẩm</span>
+              <h2>Thêm, sửa, xóa sản phẩm</h2>
+            </div>
+          </div>
+
+          <form id="productForm" class="product-form">
+            <input type="hidden" name="editIndex" value="" />
+            <label>
+              Tên sản phẩm
+              <input name="name" type="text" required />
+            </label>
+            <label>
+              Nhóm hiển thị
+              <select name="section">
+                <option value="flash">Flash sale</option>
+                <option value="phones">Điện thoại nổi bật</option>
+                <option value="computers">Tablet & laptop</option>
+                <option value="accessories">Phụ kiện</option>
+              </select>
+            </label>
+            <label>
+              Loại sản phẩm
+              <select name="type">
+                <option value="phone">Điện thoại</option>
+                <option value="tablet">Tablet/Laptop</option>
+                <option value="accessory">Phụ kiện</option>
+              </select>
+            </label>
+            <label>
+              Giá bán
+              <input name="price" type="text" inputmode="numeric" placeholder="18990000" required />
+            </label>
+            <label>
+              Giá gốc
+              <input name="oldPrice" type="text" inputmode="numeric" placeholder="22990000" required />
+            </label>
+            <label>
+              Suất ưu đãi còn lại (%)
+              <input name="stock" type="number" min="0" max="100" />
+            </label>
+            <label class="wide">
+              Link ảnh sản phẩm
+              <input name="image" type="url" placeholder="https://..." />
+            </label>
+            <label>
+              Thông số
+              <input name="specs" type="text" placeholder="AMOLED 120Hz, Camera 108MP" />
+            </label>
+            <label>
+              Nhãn
+              <input name="badges" type="text" placeholder="Hot, Trả góp 0%" />
+            </label>
+            <div class="form-actions wide">
+              <button class="primary-button" type="submit" id="productSubmit">
+                <i data-lucide="plus"></i>
+                Thêm sản phẩm
+              </button>
+              <button class="ghost-button" type="button" id="clearProductForm">Xóa form</button>
+            </div>
+          </form>
+
+          <div class="product-toolbar">
+            <input id="productSearch" type="search" placeholder="Tìm sản phẩm để sửa..." />
+          </div>
+          <div id="productList" class="admin-product-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
