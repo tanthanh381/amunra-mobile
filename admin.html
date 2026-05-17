@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Admin Amunra | Quản lý nội dung</title>
     <link rel="stylesheet" href="./admin.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
@@ -19,7 +25,7 @@
         </div>
       </div>
       <nav>
-        <a href="./index.html" target="_blank" rel="noreferrer">
+        <a href="./index.html" target="_blank" rel="noopener noreferrer">
           <i data-lucide="external-link"></i>
           Xem website
         </a>
@@ -80,63 +86,63 @@
           <form id="siteForm" class="form-grid">
             <label>
               Tên thương hiệu
-              <input name="brandName" type="text" />
+              <input name="brandName" type="text" maxlength="80" />
             </label>
             <label>
               Dòng phụ logo
-              <input name="brandSubtitle" type="text" />
+              <input name="brandSubtitle" type="text" maxlength="80" />
             </label>
             <label class="wide">
               Thông báo đầu trang
-              <input name="topMessage" type="text" />
+              <input name="topMessage" type="text" maxlength="160" />
             </label>
             <label>
               Hotline hiển thị
-              <input name="hotline" type="text" />
+              <input name="hotline" type="text" maxlength="40" />
             </label>
             <label>
               Số gọi điện
-              <input name="hotlineTel" type="text" />
+              <input name="hotlineTel" type="text" maxlength="30" />
             </label>
             <label>
               Email
-              <input name="email" type="email" />
+              <input name="email" type="email" maxlength="120" />
             </label>
             <label>
               Địa chỉ
-              <input name="address" type="text" />
+              <input name="address" type="text" maxlength="160" />
             </label>
             <label>
               Nhãn ưu đãi 1
-              <input name="promoOneLabel" type="text" />
+              <input name="promoOneLabel" type="text" maxlength="80" />
             </label>
             <label>
               Nội dung ưu đãi 1
-              <input name="promoOneTitle" type="text" />
+              <input name="promoOneTitle" type="text" maxlength="120" />
             </label>
             <label>
               Nhãn ưu đãi 2
-              <input name="promoTwoLabel" type="text" />
+              <input name="promoTwoLabel" type="text" maxlength="80" />
             </label>
             <label>
               Nội dung ưu đãi 2
-              <input name="promoTwoTitle" type="text" />
+              <input name="promoTwoTitle" type="text" maxlength="120" />
             </label>
             <label>
               Nhãn khối thu cũ
-              <input name="tradeEyebrow" type="text" />
+              <input name="tradeEyebrow" type="text" maxlength="80" />
             </label>
             <label>
               Tiêu đề khối thu cũ
-              <input name="tradeTitle" type="text" />
+              <input name="tradeTitle" type="text" maxlength="120" />
             </label>
             <label class="wide">
               Mô tả khối thu cũ
-              <textarea name="tradeDescription" rows="3"></textarea>
+              <textarea name="tradeDescription" rows="3" maxlength="500"></textarea>
             </label>
             <label class="wide">
               Giới thiệu ở footer
-              <textarea name="footerIntro" rows="3"></textarea>
+              <textarea name="footerIntro" rows="3" maxlength="500"></textarea>
             </label>
             <div class="form-actions wide">
               <button class="primary-button" type="submit">
@@ -181,7 +187,7 @@
             <input type="hidden" name="editIndex" value="" />
             <label>
               Tên sản phẩm
-              <input name="name" type="text" required />
+              <input name="name" type="text" maxlength="120" required />
             </label>
             <label>
               Nhóm hiển thị
@@ -202,11 +208,11 @@
             </label>
             <label>
               Giá bán
-              <input name="price" type="text" inputmode="numeric" placeholder="18990000" required />
+              <input name="price" type="text" inputmode="numeric" placeholder="18990000" maxlength="16" required />
             </label>
             <label>
               Giá gốc
-              <input name="oldPrice" type="text" inputmode="numeric" placeholder="22990000" required />
+              <input name="oldPrice" type="text" inputmode="numeric" placeholder="22990000" maxlength="16" required />
             </label>
             <label>
               Suất ưu đãi còn lại (%)
@@ -218,11 +224,11 @@
             </label>
             <label>
               Thông số
-              <input name="specs" type="text" placeholder="AMOLED 120Hz, Camera 108MP" />
+              <input name="specs" type="text" maxlength="240" placeholder="AMOLED 120Hz, Camera 108MP" />
             </label>
             <label>
               Nhãn
-              <input name="badges" type="text" placeholder="Hot, Trả góp 0%" />
+              <input name="badges" type="text" maxlength="160" placeholder="Hot, Trả góp 0%" />
             </label>
             <div class="form-actions wide">
               <button class="primary-button" type="submit" id="productSubmit">
@@ -234,7 +240,7 @@
           </form>
 
           <div class="product-toolbar">
-            <input id="productSearch" type="search" placeholder="Tìm sản phẩm để sửa..." />
+            <input id="productSearch" type="search" maxlength="120" placeholder="Tìm sản phẩm để sửa..." />
           </div>
           <div id="productList" class="admin-product-list"></div>
         </section>
