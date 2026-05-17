@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Amunra Mobile - website bán điện thoại, tablet, laptop, smartwatch và phụ kiện công nghệ với giao diện hiện đại."
+    />
+    <title>Amunra Mobile | Điện thoại, Tablet, Laptop, Phụ kiện</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="./data.js" defer></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="top-strip">
+      <div class="container top-strip__inner">
+        <span data-content="topMessage">Cam kết máy chính hãng, bảo hành rõ ràng</span>
+        <nav aria-label="Liên kết nhanh">
+          <a href="#stores">Hệ thống cửa hàng</a>
+          <a href="#policies">Chính sách</a>
+          <a href="#news">Tin công nghệ</a>
+          <a href="./admin.html">Admin</a>
+        </nav>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-main">
+        <a class="brand" href="#" aria-label="Amunra Mobile">
+          <span class="brand__mark">A</span>
+          <span>
+            <strong data-content="brandName">Amunra</strong>
+            <small data-content="brandSubtitle">Mobile Store</small>
+          </span>
+        </a>
+
+        <button class="category-trigger" type="button" data-menu-toggle aria-expanded="false">
+          <i data-lucide="menu"></i>
+          <span>Danh mục</span>
+        </button>
+
+        <form class="search" role="search">
+          <i data-lucide="search"></i>
+          <input
+            id="siteSearch"
+            type="search"
+            placeholder="Bạn cần tìm điện thoại, tablet, phụ kiện..."
+            autocomplete="off"
+          />
+          <button type="submit">Tìm</button>
+        </form>
+
+        <div class="header-actions" aria-label="Tiện ích">
+          <a href="tel:0967292929" class="header-action" data-hotline-link>
+            <i data-lucide="phone-call"></i>
+            <span data-content="hotline">0967.29.29.29</span>
+          </a>
+          <button class="header-action cart-button" type="button" aria-label="Giỏ hàng">
+            <i data-lucide="shopping-cart"></i>
+            <span id="cartCount">0</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="category-nav" aria-label="Ngành hàng">
+        <div class="container category-nav__inner">
+          <a href="#phones">Điện thoại</a>
+          <a href="#computers">Tablet</a>
+          <a href="#computers">Laptop</a>
+          <a href="#accessories">Smartwatch</a>
+          <a href="#accessories">Âm thanh</a>
+          <a href="#tradein">Thu cũ đổi mới</a>
+          <a href="#deals">Giá sốc</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section">
+        <div class="container hero-grid">
+          <aside class="category-panel" data-menu-panel>
+            <div class="category-panel__title">
+              <i data-lucide="layout-grid"></i>
+              <span>Danh mục sản phẩm</span>
+            </div>
+            <a href="#phones"><i data-lucide="smartphone"></i> Điện thoại mới</a>
+            <a href="#computers"><i data-lucide="tablet"></i> Tablet, iPad</a>
+            <a href="#computers"><i data-lucide="laptop"></i> Laptop, MacBook</a>
+            <a href="#accessories"><i data-lucide="watch"></i> Đồng hồ thông minh</a>
+            <a href="#accessories"><i data-lucide="headphones"></i> Tai nghe, loa</a>
+            <a href="#accessories"><i data-lucide="cable"></i> Cáp, sạc, ốp lưng</a>
+            <a href="#tradein"><i data-lucide="refresh-cw"></i> Máy cũ, đổi mới</a>
+          </aside>
+
+          <section id="heroSlider" class="hero-slider" aria-label="Khuyến mãi nổi bật"></section>
+
+          <aside class="promo-stack" aria-label="Ưu đãi phụ">
+            <a class="mini-promo mini-promo--dark" href="#tradein">
+              <span data-content="promoOneLabel">Thu cũ đổi mới</span>
+              <strong data-content="promoOneTitle">Lên đời tiết kiệm tới 6 triệu</strong>
+            </a>
+            <a class="mini-promo mini-promo--light" href="#policies">
+              <span data-content="promoTwoLabel">Bảo hành Amunra Care</span>
+              <strong data-content="promoTwoTitle">Đổi máy nhanh, hỗ trợ tận nơi</strong>
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="container brand-row" aria-label="Thương hiệu nổi bật">
+        <a href="#phones">Amunra</a>
+        <a href="#phones">Apple</a>
+        <a href="#phones">Samsung</a>
+        <a href="#phones">Xiaomi</a>
+        <a href="#phones">OPPO</a>
+        <a href="#computers">iPad</a>
+        <a href="#accessories">Watch</a>
+        <a href="#accessories">Audio</a>
+      </section>
+
+      <section id="deals" class="container section-shell section-shell--sale">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Flash sale</span>
+            <h2>Giá sốc mỗi ngày</h2>
+          </div>
+          <div class="countdown" aria-label="Thời gian còn lại">
+            <span id="hours">00</span>
+            <span id="minutes">00</span>
+            <span id="seconds">00</span>
+          </div>
+        </div>
+        <div id="flashGrid" class="product-grid product-grid--sale"></div>
+      </section>
+
+      <section id="phones" class="container section-shell">
+        <div class="section-heading section-heading--with-tabs">
+          <div>
+            <span class="eyebrow">Bán chạy</span>
+            <h2>Điện thoại nổi bật</h2>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Lọc sản phẩm">
+            <button class="is-active" type="button" data-filter="all">Tất cả</button>
+            <button type="button" data-filter="phone">Điện thoại</button>
+            <button type="button" data-filter="tablet">Tablet</button>
+            <button type="button" data-filter="accessory">Phụ kiện</button>
+          </div>
+        </div>
+        <div id="productGrid" class="product-grid"></div>
+      </section>
+
+      <section class="container split-feature" id="tradein">
+        <div class="trade-card">
+          <span class="eyebrow" data-content="tradeEyebrow">Amunra Upgrade</span>
+          <h2 data-content="tradeTitle">Thu cũ đổi mới, định giá minh bạch</h2>
+          <p data-content="tradeDescription">
+            Mang máy cũ đến Amunra để được kiểm tra miễn phí, bù tiền lên đời máy mới và
+            chuyển dữ liệu tại chỗ.
+          </p>
+          <ul>
+            <li>Giữ giá trong 24 giờ sau khi định giá</li>
+            <li>Hỗ trợ trả góp phần chênh lệch</li>
+            <li>Vệ sinh, dán cường lực miễn phí khi mua máy</li>
+          </ul>
+          <a href="tel:0967292929" class="secondary-link" data-hotline-link>Gọi tư vấn ngay</a>
+        </div>
+        <div class="service-grid" id="policies">
+          <article>
+            <i data-lucide="shield-check"></i>
+            <h3>Bảo hành rõ ràng</h3>
+            <p>Máy chính hãng, hóa đơn điện tử, bảo hành theo IMEI.</p>
+          </article>
+          <article>
+            <i data-lucide="badge-percent"></i>
+            <h3>Trả góp linh hoạt</h3>
+            <p>Duyệt nhanh qua thẻ, công ty tài chính hoặc ví điện tử.</p>
+          </article>
+          <article>
+            <i data-lucide="truck"></i>
+            <h3>Giao nhanh</h3>
+            <p>Nội thành nhận trong 2 giờ, kiểm tra máy trước khi thanh toán.</p>
+          </article>
+          <article>
+            <i data-lucide="sparkles"></i>
+            <h3>Amunra Care</h3>
+            <p>Hỗ trợ cài đặt, chuyển dữ liệu và tối ưu máy miễn phí.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container section-shell compact-sections">
+        <article id="computers">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Thiết bị học tập</span>
+              <h2>Tablet & laptop</h2>
+            </div>
+            <a href="#phones">Xem thêm</a>
+          </div>
+          <div id="computerGrid" class="mini-grid"></div>
+        </article>
+        <article id="accessories">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Mua kèm tiết kiệm</span>
+              <h2>Phụ kiện thông minh</h2>
+            </div>
+            <a href="#phones">Xem thêm</a>
+          </div>
+          <div id="accessoryGrid" class="mini-grid"></div>
+        </article>
+      </section>
+
+      <section id="news" class="container news-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Cẩm nang mua sắm</span>
+            <h2>Tin công nghệ Amunra</h2>
+          </div>
+        </div>
+        <div class="news-grid">
+          <article>
+            <img
+              src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?auto=format&fit=crop&w=800&q=80"
+              alt="Người dùng điện thoại"
+            />
+            <div>
+              <span>Hướng dẫn</span>
+              <h3>Chọn điện thoại pin khỏe cho người dùng di chuyển nhiều</h3>
+            </div>
+          </article>
+          <article>
+            <img
+              src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=800&q=80"
+              alt="Bàn làm việc với laptop"
+            />
+            <div>
+              <span>So sánh</span>
+              <h3>Tablet hay laptop mỏng nhẹ: chọn thiết bị nào cho học tập?</h3>
+            </div>
+          </article>
+          <article>
+            <img
+              src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80"
+              alt="Phụ kiện điện thoại"
+            />
+            <div>
+              <span>Mẹo hay</span>
+              <h3>5 phụ kiện nên mua kèm để bảo vệ máy mới tốt hơn</h3>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="stores">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand brand--footer" href="#">
+            <span class="brand__mark">A</span>
+            <span>
+              <strong data-content="brandName">Amunra</strong>
+              <small data-content="brandSubtitle">Mobile Store</small>
+            </span>
+          </a>
+          <p data-content="footerIntro">
+            Amunra là mẫu giao diện thương mại điện tử cho cửa hàng công nghệ, tối ưu
+            cho khuyến mãi, tìm kiếm sản phẩm và chuyển đổi nhanh.
+          </p>
+        </div>
+        <div>
+          <h3>Liên hệ</h3>
+          <p>Hotline: <span data-content="hotline">0967.29.29.29</span></p>
+          <p>Email: <a href="mailto:hello@amunra.vn" data-email-link data-content="email">hello@amunra.vn</a></p>
+          <p>Địa chỉ: <span data-content="address">29 Đường Amunra, TP.HCM</span></p>
+        </div>
+        <div>
+          <h3>Chính sách</h3>
+          <a href="#policies">Bảo hành</a>
+          <a href="#tradein">Thu cũ đổi mới</a>
+          <a href="#policies">Giao hàng</a>
+          <a href="#policies">Trả góp</a>
+        </div>
+        <div>
+          <h3>Đăng ký nhận tin</h3>
+          <form class="newsletter">
+            <input type="email" placeholder="Email của bạn" aria-label="Email đăng ký" />
+            <button type="submit">Đăng ký</button>
+          </form>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
